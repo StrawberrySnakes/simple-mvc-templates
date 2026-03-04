@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const compression = require('compression');
 const favicon = require('serve-favicon');
+const expressHandlebars = require('express-handlebars');
 
 const router = require('./router.js');
 
@@ -15,6 +16,13 @@ app.use(favicon(`${__dirname}/../hosted/img/favicon.png`));
 app.use(compression());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Tool express can use behind the scenes to render handlebars templates
+app.engine('handlebars', expressHandlebars.engine({
+  defaultLayout: '',
+}));
+app.set('view engine', 'handlebars');
+app.set('views', `${__dirname}/../views`);
 
 router(app);
 

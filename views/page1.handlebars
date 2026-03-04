@@ -9,5 +9,14 @@
     <a href="/">Home</a>
     <a href="/page2">Page 2</a>
     <a href="/getName">Show Name</a>
+
+    {{#if names}}
+        <h2>Names:</h2>
+        <ul>
+            {{#each names}}
+                <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    {{/if}}
 </body>
 </html>
